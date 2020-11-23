@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../Route/BookRouteInformationParser.dart';
 import '../Route/BookRouterDelegate.dart';
 
-class BooksApp extends StatefulWidget {
+class RouterDemo extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _BooksAppState();
+  State<StatefulWidget> createState() => _RouterDemoState();
 }
 
-class _BooksAppState extends State<BooksApp> {
+class _RouterDemoState extends State<RouterDemo> {
   BookRouterDelegate _routerDelegate = BookRouterDelegate();
   BookRouteInformationParser _routeInformationParser =
       BookRouteInformationParser();

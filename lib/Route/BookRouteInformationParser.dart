@@ -17,12 +17,12 @@ class BookRouteInformationParser extends RouteInformationParser<BookRoutePath> {
   }
 
   @override
-  RouteInformation restoreRouteInformation(BookRoutePath path) {
-    if (path.isHomePage) {
+  RouteInformation restoreRouteInformation(BookRoutePath configuration) {
+    if (configuration.isHomePage) {
       return RouteInformation(location: '/');
     }
-    if (path.isDetailsPage) {
-      return RouteInformation(location: '/book/${path.id}');
+    if (configuration.isDetailsPage) {
+      return RouteInformation(location: '/book/${configuration.id}');
     }
     return null;
   }

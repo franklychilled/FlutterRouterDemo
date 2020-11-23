@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'App/BooksApp.dart';
+import 'App/RouterDemo.dart';
 
 void main() {
-  runApp(BooksApp());
+  runApp(RouterDemo());
 }

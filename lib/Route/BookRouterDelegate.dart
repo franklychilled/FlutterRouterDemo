@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../Data/Books.dart';
 import '../Extension/NoAnimationTransitionDelegate.dart';
 import '../Model/Book.dart';
 import '../Page/BookDetailsPage.dart';
@@ -12,17 +13,15 @@ class BookRouterDelegate extends RouterDelegate<BookRoutePath>
 
   Book _selectedBook;
 
-  List<Book> books = [
-    Book('Stranger in a Strange Land', 'Robert A. Heinlein'),
-    Book('Foundation', 'Isaac Asimov'),
-    Book('Fahrenheit 451', 'Ray Bradbury'),
-  ];
-
   BookRouterDelegate() : navigatorKey = GlobalKey<NavigatorState>();
 
-  BookRoutePath get currentConfiguration => _selectedBook == null
-      ? BookRoutePath.home()
-      : BookRoutePath.details(books.indexOf(_selectedBook));
+  BookRoutePath get currentConfiguration {
+    if (_selectedBook == null) {
+      return BooksListPath();
+    } else {
+      return BooksDetailsPath(books.indexOf(_selectedBook));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +43,8 @@ class BookRouterDelegate extends RouterDelegate<BookRoutePath>
           return false;
         }
 
-        // Update the list of pages by setting _selectedBook to null
         _selectedBook = null;
         notifyListeners();
-
         return true;
       },
     );
@@ -55,7 +52,7 @@ class BookRouterDelegate extends RouterDelegate<BookRoutePath>
 
   @override
   Future<void> setNewRoutePath(BookRoutePath path) async {
-    if (path.isDetailsPage) {
+    if (path is BooksDetailsPath) {
       _selectedBook = books[path.id];
     }
   }

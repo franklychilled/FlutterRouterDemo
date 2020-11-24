@@ -4,7 +4,7 @@ import '../Data/Books.dart';
 import '../Extension/NoAnimationTransitionDelegate.dart';
 import '../Model/Book.dart';
 import '../Page/BookDetailsPage.dart';
-import '../Screen/BooksListScreen.dart';
+import '../Page/BooksListPage.dart';
 import 'BookRoutePath.dart';
 
 class BookRouterDelegate extends RouterDelegate<BookRoutePath>
@@ -29,13 +29,7 @@ class BookRouterDelegate extends RouterDelegate<BookRoutePath>
       key: navigatorKey,
       transitionDelegate: NoAnimationTransitionDelegate(),
       pages: [
-        MaterialPage(
-          key: ValueKey('BooksListPage'),
-          child: BooksListScreen(
-            books: books,
-            onTapped: _handleBookTapped,
-          ),
-        ),
+        BooksListPage(handleBookTapped: _handleBookTapped),
         if (_selectedBook != null) BookDetailsPage(book: _selectedBook)
       ],
       onPopPage: (route, result) {
